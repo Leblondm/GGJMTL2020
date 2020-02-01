@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour
     private float scale;
 
     private Rigidbody2D rb2d;
+    private Animator animator;
     
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator> ();
         rb2d = GetComponent<Rigidbody2D> ();
         scale = transform.localScale.x;
     }
@@ -33,8 +35,9 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector2 movement = new Vector3(i_movement.x, 0) * moveSpeed;
-        rb2d.velocity = movement * Time.fixedDeltaTime;
+        Vector2 movement = new Vector3(i_movement.x * moveSpeed, rb2d.velocity.y);
+        rb2d.velocity = movement;
+        animator.SetFloat("Velocity", Mathf.Abs(movement.x));
     }
 
     private void OnMove(InputValue value)
@@ -49,6 +52,6 @@ public class PlayerController : MonoBehaviour
     private void OnMoveUp()
     {
         Vector2 movement = new Vector3(0, 1.0f) * jumpSpeed;
-        rb2d.velocity = new Vector2(rb2d.velocity.x, movement.y);
+        rb2d.AddForce(movement);
     }
 }
