@@ -6,6 +6,7 @@ public class Canon : Interactible
 {
 	public int currentStep = 0;
 	public Sprite ReloadVisual;
+	public GameObject CanonEffect;
 	public string ReloadClipName;
 	public string ShootClipName;
 
@@ -36,7 +37,7 @@ public class Canon : Interactible
 			timeToExecute = 10.0f;
 			repairClipName = ReloadClipName;
 			EnableInteract();
-			//	update game manager
+			FindObjectOfType<GameManager>().CanonShoot();
 		}
 		//	update visuel de la ressource qu'on traine
 	}
