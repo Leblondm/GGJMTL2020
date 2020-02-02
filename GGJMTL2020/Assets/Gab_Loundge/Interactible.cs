@@ -109,6 +109,7 @@ public class Interactible : MonoBehaviour
 				(needResourceFeedback.GetComponent<SpriteRenderer>()).sprite = null;
 				currentTween.Kill();
 				ExecuteInteract(Instigator);
+                currentInteractor.OnInteract();
 				//(needResourceFeedback.GetComponent<SpriteRenderer>()).sprite = neededVisual;
 			}
 		}
