@@ -445,6 +445,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29a7a4a847b1214e81c576ff734cb42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStuff: 0
+  playerId: 0
   groundCheck: {fileID: 4097984577502977224}
   moveSpeed: 5
   jumpSpeed: 150

@@ -50,3 +50,69 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: a4d5fcb8ec1cd4d41b070dd322f1b4ae, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: VictoireMusique
+    clip: {fileID: 8300000, guid: b403f934e96a22a48aa671a5f60a58ca, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: CanonShotSFX
+    clip: {fileID: 8300000, guid: bcd8685092774024f8f032ef806b5800, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: TakeBouletSFX
+    clip: {fileID: 8300000, guid: a347b8f581b717c4e98b6bd7928b9c61, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: TakeSailsSFX
+    clip: {fileID: 8300000, guid: f1acf78648b3db6458527f5128461a30, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: TakeSails2SFX
+    clip: {fileID: 8300000, guid: f1acf78648b3db6458527f5128461a30, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: TakeWoodSFX
+    clip: {fileID: 8300000, guid: 8e5665f6906d0054da0819f18cf8012f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ReloadCanonSFX
+    clip: {fileID: 8300000, guid: 6b09908f346616441848a68e5a92845a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ReloadCanon2SFX
+    clip: {fileID: 8300000, guid: 70cfa726f65071b4e96576f846580874, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: RepairSailsSFX
+    clip: {fileID: 8300000, guid: fbff3ee1a71c1c84da87a0f31be8cc32, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: RepairWoodSFX
+    clip: {fileID: 8300000, guid: e69ca44dd98939c4f9f249ad62de4b34, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
