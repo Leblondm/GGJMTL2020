@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Animation CameraShake;
 
     public List<Phase> phases;
+    public Phase currentPhase;
 
     public Canvas canvas;
 
@@ -72,6 +73,14 @@ public class GameManager : MonoBehaviour
 			float time = timing + Random.Range(-randomizedTiming, randomizedTiming);
             yield return new WaitForSeconds(time);
         }
+    }
+
+    public void Win() {
+
+    }
+
+    public void Loose() {
+
     }
 
 	public void CanonShoot()
