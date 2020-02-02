@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
 		if (interacting == true)
 		{
 			Debug.Log("Dans interact");
-			Collider2D[] interactInRange = Physics2D.OverlapBoxAll(transform.position, Vector2.one, 0, LayerMask.GetMask("Interact"));
+			Collider2D[] interactInRange = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), 0, LayerMask.GetMask("Interact"));
 			Debug.Log("On a " + interactInRange.Length.ToString() + " interactible a porter");
 			if (interactInRange.Length > 0)
 			{

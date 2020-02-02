@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public float timing = 10f;
     public float randomizedTiming = 2f;
 
+	public int counterCanon = 0;
+
 	public List<Interactible> lstBreakable;
 
     public Animator CameraAnimator;
@@ -60,4 +62,11 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(time);
         }
     }
+
+	public void CanonShoot()
+	{
+		counterCanon++;
+		timing = phases[counterCanon].timing;
+		randomizedTiming = phases[counterCanon].randomizedTiming;
+	}
 }
