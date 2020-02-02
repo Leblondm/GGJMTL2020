@@ -13,11 +13,16 @@ public class GameManager : MonoBehaviour
     public float timing = 10f;
     public float randomizedTiming = 2f;
 
+    public Animator CameraAnimator;
+
     public List<Phase> phases;
+
+    private bool playing = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        playing = true;
         StartCoroutine("GameplayLoop");
     }
 
@@ -25,6 +30,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnPlay() {
+        CameraAnimator.SetTrigger("Game");
     }
 
     IEnumerator GameplayLoop() {
