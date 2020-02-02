@@ -103,7 +103,7 @@ MonoBehaviour:
   breakVisual: {fileID: 21300000, guid: 30a62bf9c360df542a6d96a2214a7576, type: 3}
   neededVisual: {fileID: 21300000, guid: 8b86e2bd77311d7408a9537331a917e2, type: 3}
   repairClipName: RepairWoodSFX
-  breakClipName: 
+  breakClipName: TearsWoodSFX
   timeToExecute: 5
   bInteractible: 0
   bDuringInteract: 0
