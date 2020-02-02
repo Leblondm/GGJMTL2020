@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public float timing = 10f;
     public float randomizedTiming = 2f;
 
+	public List<Interactible> lstBreakable;
+
     public Animator CameraAnimator;
 
     public List<Phase> phases;
