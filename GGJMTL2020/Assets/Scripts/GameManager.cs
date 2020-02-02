@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
     public List<Phase> phases;
     public Phase currentPhase;
 
-    public Canvas canvas;
+    public RectTransform gameUI;
+    public RectTransform menuUI;
 
     private bool playing = false;
 
@@ -50,9 +51,15 @@ public class GameManager : MonoBehaviour
 
     public void ShakeCamera() {
         CameraShake.Play();
-        canvas.gameObject.SetActive(false);
+        menuUI.gameObject.SetActive(false);
+        StartCoroutine("WaitStart");
         FindObjectOfType<AudioManager>().Stop("MenuMusic");
         FindObjectOfType<AudioManager>().Play("AmbiantMusic");
+    }
+
+    IEnumerator WaitStart() {
+        yield return new WaitForSeconds(7f);
+        gameUI.gameObject.SetActive(true);
     }
 
     IEnumerator GameplayLoop() {
@@ -76,11 +83,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void Win() {
-
+        gameUI.gameObject.SetActive(false);
     }
 
     public void Loose() {
-
+        gameUI.gameObject.SetActive(false);
     }
 
 	public void CanonShoot()
