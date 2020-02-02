@@ -51,23 +51,22 @@ public class GameManager : MonoBehaviour
     public void OnPlay() {
         playing = true;
         FindObjectOfType<AudioManager>().Play("UIClick");
-        StartCoroutine("GameplayLoop");
-
         CameraAnimator.SetTrigger("Game");
         KrakenAnimator.SetTrigger("Game");
+        StartCoroutine("WaitStart");
+        menuUI.gameObject.SetActive(false);
     }
 
     public void ShakeCamera() {
         CameraShake.Play();
-        menuUI.gameObject.SetActive(false);
-        StartCoroutine("WaitStart");
-        FindObjectOfType<AudioManager>().Stop("MenuMusic");
-        FindObjectOfType<AudioManager>().Play("AmbiantMusic");
     }
 
     IEnumerator WaitStart() {
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(15f);
         gameUI.gameObject.SetActive(true);
+        FindObjectOfType<AudioManager>().Stop("MenuMusic");
+        FindObjectOfType<AudioManager>().Play("AmbiantMusic");
+        StartCoroutine("GameplayLoop");
     }
 
     IEnumerator GameplayLoop() {

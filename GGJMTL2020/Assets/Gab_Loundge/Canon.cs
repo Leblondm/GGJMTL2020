@@ -25,6 +25,7 @@ public class Canon : Interactible
 			needRessource = GameRessource.None;
 			timeToExecute = 0;
 			repairClipName = ShootClipName;
+			bInteractible = true;
 			reparingVisual = null;
 		}
 		else if(currentStep == 1)

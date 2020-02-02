@@ -50,7 +50,9 @@ public class PlayerController : MonoBehaviour
 	//private void myfunc(int b) { }
 	void Awake()
 	{
-        foreach(ResourceSprite resourceSprite in ResourceSprites) {
+        ResourceTextures = new Dictionary<GameRessource, Sprite>();
+		foreach(ResourceSprite resourceSprite in ResourceSprites) {
+			if(resourceSprite == null) continue;
             ResourceTextures.Add(resourceSprite.resource, resourceSprite.sprite);
         }
 
