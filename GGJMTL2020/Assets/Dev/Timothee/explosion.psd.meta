@@ -209,7 +209,7 @@ TextureImporter:
       name: explosion_3
       rect:
         serializedVersion: 2
-        x: 852
+        x: 851
         y: 0
         width: 284
         height: 278
@@ -276,7 +276,7 @@ TextureImporter:
         y: 0
         width: 285
         height: 278
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []

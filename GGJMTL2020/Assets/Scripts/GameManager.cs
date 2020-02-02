@@ -16,32 +16,46 @@ public class GameManager : MonoBehaviour
 	public List<Interactible> lstBreakable;
 
     public Animator CameraAnimator;
+    public Animator KrakenAnimator;
+    public Animation CameraShake;
 
     public List<Phase> phases;
+
+    public Canvas canvas;
 
     private bool playing = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        playing = true;
-        StartCoroutine("GameplayLoop");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void OnPlay() {
+        playing = true;
+        FindObjectOfType<AudioManager>().Play("UIClick");
+        StartCoroutine("GameplayLoop");
+
         CameraAnimator.SetTrigger("Game");
+        KrakenAnimator.SetTrigger("Game");
+    }
+
+    public void ShakeCamera() {
+        CameraShake.Play();
+        canvas.gameObject.SetActive(false);
+        FindObjectOfType<AudioManager>().Stop("MenuMusic");
+        FindObjectOfType<AudioManager>().Play("AmbiantMusic");
     }
 
     IEnumerator GameplayLoop() {
         while(true)
         {
             // TODO break something
+            ShakeCamera();
 
             float time = timing + Random.Range(-randomizedTiming, randomizedTiming);
             yield return new WaitForSeconds(time);

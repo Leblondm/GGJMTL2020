@@ -17,7 +17,7 @@ TagManager:
   - 
   - Player
   - Interact
-  - 
+  - Colliders
   - 
   - 
   - 
@@ -42,4 +42,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 2056605915
+    locked: 0
+  - name: Front
+    uniqueID: 3866451745
     locked: 0

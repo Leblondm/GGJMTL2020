@@ -449,7 +449,7 @@ MonoBehaviour:
   playerId: 0
   groundCheck: {fileID: 4097984577502977224}
   moveSpeed: 5
-  jumpSpeed: 150
+  jumpSpeed: 75
 --- !u!114 &4097984576175349252
 MonoBehaviour:
   m_ObjectHideFlags: 0
