@@ -175,6 +175,7 @@ public class PlayerController : MonoBehaviour
 			Vector2 j_movement = new Vector3(0, 1.0f) * jumpSpeed;
 			rb2d.AddForce(j_movement);
 			grounded = false;
+			FindObjectOfType<AudioManager>().Play("JumpSFX");
 			return;
 		}
 
