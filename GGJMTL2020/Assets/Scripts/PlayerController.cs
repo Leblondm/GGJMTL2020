@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
 	private bool jumpKey = false;
 	private bool disableInteracting = false;
 
+	public bool blockInputEndGame = false;
+
     private Rigidbody2D rb2d;
     private Animator animator;
     private Collider2D collider2d;
@@ -97,8 +99,11 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-		GetInput();
-		ProcessInput();
+		if(blockInputEndGame == false)
+		{
+			GetInput();
+			ProcessInput();
+		}
 	}
 
 	//void OnEnable()

@@ -22,10 +22,17 @@ public class GameManager : MonoBehaviour
     public Animator KrakenAnimator;
     public Animation CameraShake;
 
-    public List<Phase> phases;
+	public ProgressBar KillBar;
+	public ProgressBar krakenBar;
+
+	public List<Phase> phases;
     public Phase currentPhase;
 
-    public Canvas canvas;
+	public SpriteRenderer EndScreen;
+	public Sprite WinScreen;
+	public Sprite LooseScreen;
+
+	public Canvas canvas;
 
     private bool playing = false;
 
@@ -70,26 +77,48 @@ public class GameManager : MonoBehaviour
 					ShakeCamera();
 				}
 			}
+
+			krakenBar.ReduceProgress(lstBreak.Count);
+			if(krakenBar.progress <= 0.0f)
+			{
+				Loose();
+			}
+
 			float time = timing + Random.Range(-randomizedTiming, randomizedTiming);
             yield return new WaitForSeconds(time);
         }
     }
 
-    public void Win() {
-
+    public void Win()
+	{
+		EndScreen.sprite = WinScreen;
+		EndScreen.enabled = true;
+		PlayerController[] myPlayer = FindObjectsOfType<PlayerController>();
+		for (int i = 0; i < myPlayer.Length; i++)
+		{
+			myPlayer[i].blockInputEndGame = true;
+		}
     }
 
-    public void Loose() {
-
-    }
+    public void Loose()
+	{
+		EndScreen.sprite = LooseScreen;
+		EndScreen.enabled = true;
+		PlayerController[] myPlayer = FindObjectsOfType<PlayerController>();
+		for (int i = 0; i < myPlayer.Length; i++)
+		{
+			myPlayer[i].blockInputEndGame = true;
+		}
+	}
 
 	public void CanonShoot()
 	{
 		counterCanon++;
+		KillBar.SetProgress(counterCanon);
 		if(counterCanon > 3)
 		{
 			//	fin win
-
+			Win();
 		}
 		timing = phases[counterCanon].timing;
 		randomizedTiming = phases[counterCanon].randomizedTiming;
