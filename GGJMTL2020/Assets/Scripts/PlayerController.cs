@@ -34,6 +34,11 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Collider2D collider2d;
 
+    public SpriteRenderer resource;
+    public List<ResourceSprite> ResourceSprites;
+
+    Dictionary<GameRessource, Sprite> ResourceTextures;
+
 	// Start is called before the first frame update
 	PlayerInput control;
 
@@ -43,6 +48,10 @@ public class PlayerController : MonoBehaviour
 	//private void myfunc(int b) { }
 	void Awake()
 	{
+        foreach(ResourceSprite resourceSprite in ResourceSprites) {
+            ResourceTextures.Add(resourceSprite.resource, resourceSprite.sprite);
+        }
+
 		/*delgIntAsArg myDelg = myfunc;
 		myDelg += (int i) => { Debug.Log("i: "); };
 		myDelg.Invoke(6);
@@ -82,6 +91,8 @@ public class PlayerController : MonoBehaviour
         gravity = rb2d.gravityScale;
 
         bottom = collider2d.bounds.extents.y;
+
+        OnInteract();
     }
 
 	void Update()
@@ -133,7 +144,7 @@ public class PlayerController : MonoBehaviour
 		if (interacting == true)
 		{
 			Debug.Log("Dans interact");
-			Collider2D[] interactInRange = Physics2D.OverlapBoxAll(transform.position, Vector2.one, 0, LayerMask.GetMask("Interact"));
+			Collider2D[] interactInRange = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), 0, LayerMask.GetMask("Interact"));
 			Debug.Log("On a " + interactInRange.Length.ToString() + " interactible a porter");
 			if (interactInRange.Length > 0)
 			{
@@ -230,6 +241,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnInteract() {
+        resource.sprite = ResourceTextures[currentStuff];
+    }
+
 	/*
 	InputPkg GetInputPkg(int pid)
 	{
@@ -248,4 +263,10 @@ public class PlayerController : MonoBehaviour
 
 	}
 	*/
+}
+
+[System.Serializable]
+public class ResourceSprite {
+    public GameRessource resource;
+    public Sprite sprite;
 }

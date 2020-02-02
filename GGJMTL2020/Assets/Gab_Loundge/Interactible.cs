@@ -112,6 +112,7 @@ public class Interactible : MonoBehaviour
 				currentTween.Kill();
 				masterAudioManager.Stop(repairClipName);
 				ExecuteInteract(Instigator);
+                currentInteractor.OnInteract();
 				//(needResourceFeedback.GetComponent<SpriteRenderer>()).sprite = neededVisual;
 			}
 		}
