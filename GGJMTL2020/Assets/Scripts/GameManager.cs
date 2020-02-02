@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
 	public int counterCanon = 0;
 
 	public List<Interactible> lstBreakable;
+	public List<Interactible> lstBreak;
 
-    public Animator CameraAnimator;
+	public Animator CameraAnimator;
     public Animator KrakenAnimator;
     public Animation CameraShake;
 
@@ -58,9 +59,18 @@ public class GameManager : MonoBehaviour
         while(true)
         {
             // TODO break something
-            ShakeCamera();
-
-            float time = timing + Random.Range(-randomizedTiming, randomizedTiming);
+			if(lstBreakable.Count > 0)
+			{
+				int BreakStuffIndex = Random.Range(0, (lstBreakable.Count - 1));
+				if (lstBreakable[BreakStuffIndex] != null)
+				{
+					lstBreakable[BreakStuffIndex].EnableInteract();
+					lstBreak.Add(lstBreakable[BreakStuffIndex]);
+					lstBreakable.RemoveAt(BreakStuffIndex);
+					ShakeCamera();
+				}
+			}
+			float time = timing + Random.Range(-randomizedTiming, randomizedTiming);
             yield return new WaitForSeconds(time);
         }
     }
@@ -76,7 +86,27 @@ public class GameManager : MonoBehaviour
 	public void CanonShoot()
 	{
 		counterCanon++;
+		if(counterCanon > 3)
+		{
+			//	fin win
+
+		}
 		timing = phases[counterCanon].timing;
 		randomizedTiming = phases[counterCanon].randomizedTiming;
+
+	}
+
+
+	public void StuffRepair(Interactible myCoolStuff)
+	{
+		for (int i = 0; i < lstBreak.Count; i++)
+		{
+			if(lstBreak[i] == myCoolStuff)
+			{
+				lstBreakable.Add(lstBreak[i]);
+				lstBreak.RemoveAt(i);
+				return;
+			}
+		}
 	}
 }
