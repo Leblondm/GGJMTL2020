@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public List<Phase> phases;
 
+    public Canvas canvas;
+
     private bool playing = false;
 
     // Start is called before the first frame update
@@ -36,6 +38,9 @@ public class GameManager : MonoBehaviour
 
     public void OnPlay() {
         CameraAnimator.SetTrigger("Game");
+        canvas.gameObject.SetActive(false);
+        FindObjectOfType<AudioManager>().Stop("MenuMusic");
+        FindObjectOfType<AudioManager>().Play("AmbiantMusic");
     }
 
     IEnumerator GameplayLoop() {
