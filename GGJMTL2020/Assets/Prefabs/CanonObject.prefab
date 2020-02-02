@@ -127,7 +127,7 @@ MonoBehaviour:
   normalVisual: {fileID: 21300000, guid: a437a82bc76b8794cb840e77379aeda1, type: 3}
   reparingVisual: {fileID: 21300000, guid: 3762e93766d6d3049af88956e3d89a38, type: 3}
   breakVisual: {fileID: 21300000, guid: e0b4c736297ed7441b23fb2990dce7f7, type: 3}
-  neededVisual: {fileID: 21300000, guid: fb7698e883993024eb93854b83a64dd4, type: 3}
+  neededVisual: {fileID: 21300000, guid: e3b8abfbfb903ef4f9e5ba060bf1cf76, type: 3}
   repairClipName: ReloadCanonSFX
   breakClipName: 
   timeToExecute: 10
@@ -138,6 +138,7 @@ MonoBehaviour:
   currentInteractor: {fileID: 0}
   currentStep: 0
   ReloadVisual: {fileID: 21300000, guid: 3762e93766d6d3049af88956e3d89a38, type: 3}
+  CanonEffect: {fileID: 0}
   ReloadClipName: ReloadCanonSFX
   ShootClipName: CanonShotSFX
 --- !u!1 &5291892691402022663

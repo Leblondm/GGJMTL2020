@@ -50,7 +50,9 @@ public class PlayerController : MonoBehaviour
 	//private void myfunc(int b) { }
 	void Awake()
 	{
-        foreach(ResourceSprite resourceSprite in ResourceSprites) {
+        ResourceTextures = new Dictionary<GameRessource, Sprite>();
+		foreach(ResourceSprite resourceSprite in ResourceSprites) {
+			if(resourceSprite == null) continue;
             ResourceTextures.Add(resourceSprite.resource, resourceSprite.sprite);
         }
 
@@ -191,6 +193,7 @@ public class PlayerController : MonoBehaviour
 			Vector2 j_movement = new Vector3(0, 1.0f) * jumpSpeed;
 			rb2d.AddForce(j_movement);
 			grounded = false;
+			FindObjectOfType<AudioManager>().Play("JumpSFX");
 			return;
 		}
 

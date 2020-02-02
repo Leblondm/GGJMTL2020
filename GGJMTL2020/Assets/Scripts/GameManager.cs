@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 	public List<Phase> phases;
     public Phase currentPhase;
 
+    public RectTransform gameUI;
+    public RectTransform menuUI;
 	public SpriteRenderer EndScreen;
 	public Sprite WinScreen;
 	public Sprite LooseScreen;
@@ -49,17 +51,22 @@ public class GameManager : MonoBehaviour
     public void OnPlay() {
         playing = true;
         FindObjectOfType<AudioManager>().Play("UIClick");
-        StartCoroutine("GameplayLoop");
-
         CameraAnimator.SetTrigger("Game");
         KrakenAnimator.SetTrigger("Game");
+        StartCoroutine("WaitStart");
+        menuUI.gameObject.SetActive(false);
     }
 
     public void ShakeCamera() {
         CameraShake.Play();
-        canvas.gameObject.SetActive(false);
+    }
+
+    IEnumerator WaitStart() {
+        yield return new WaitForSeconds(15f);
+        gameUI.gameObject.SetActive(true);
         FindObjectOfType<AudioManager>().Stop("MenuMusic");
         FindObjectOfType<AudioManager>().Play("AmbiantMusic");
+        StartCoroutine("GameplayLoop");
     }
 
     IEnumerator GameplayLoop() {
@@ -91,7 +98,8 @@ public class GameManager : MonoBehaviour
 
     public void Win()
 	{
-		EndScreen.sprite = WinScreen;
+		gameUI.gameObject.SetActive(false);
+        EndScreen.sprite = WinScreen;
 		EndScreen.enabled = true;
 		PlayerController[] myPlayer = FindObjectsOfType<PlayerController>();
 		for (int i = 0; i < myPlayer.Length; i++)
@@ -102,7 +110,8 @@ public class GameManager : MonoBehaviour
 
     public void Loose()
 	{
-		EndScreen.sprite = LooseScreen;
+		gameUI.gameObject.SetActive(false);
+        EndScreen.sprite = LooseScreen;
 		EndScreen.enabled = true;
 		PlayerController[] myPlayer = FindObjectsOfType<PlayerController>();
 		for (int i = 0; i < myPlayer.Length; i++)
