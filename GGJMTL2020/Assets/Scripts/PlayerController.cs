@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
 
     public float moveSpeed = 5f;
-    public float jumpSpeed = 5f;
+    public float jumpSpeed = 1f;
 
     private float scale;
     private float gravity;
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private bool climbingLadder = false;
     private bool grounded = false;
 	private bool interacting = false;
+	private bool jumpKey = false;
 	private bool disableInteracting = false;
 
     private Rigidbody2D rb2d;
@@ -114,8 +115,10 @@ public class PlayerController : MonoBehaviour
     {
         // grounded?
         grounded = false;
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector3.down, 0.1f);
-        foreach(RaycastHit2D hit in hits) {
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector3.down, 0.5f, 1 << LayerMask.NameToLayer("Colliders"));
+		Debug.Log("NB GROUND = " + hits.Length.ToString());
+        foreach(RaycastHit2D hit in hits)
+		{
             if(hit.collider.gameObject != gameObject)
                 grounded = true;
         }
@@ -131,6 +134,7 @@ public class PlayerController : MonoBehaviour
 		i_movement.x = player.GetAxis("MoveX"); // get input by name or action id
 		i_movement.y = player.GetAxis("MoveY");
 		interacting = player.GetButton("Interact");
+		jumpKey = player.GetButton("Jump");
 		Debug.Log("Dans Get Input");
 	}
 
@@ -140,7 +144,7 @@ public class PlayerController : MonoBehaviour
 		if (interacting == true)
 		{
 			Debug.Log("Dans interact");
-			Collider2D[] interactInRange = Physics2D.OverlapBoxAll(transform.position, Vector2.one, 0, LayerMask.GetMask("Interact"));
+			Collider2D[] interactInRange = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), 0, LayerMask.GetMask("Interact"));
 			Debug.Log("On a " + interactInRange.Length.ToString() + " interactible a porter");
 			if (interactInRange.Length > 0)
 			{
@@ -175,7 +179,17 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 
-		
+		Debug.Log("Test dans PlayerController On move up");
+
+		if (grounded == true && climbingLadder == false && jumpKey == true)
+		{
+			Vector2 j_movement = new Vector3(0, 1.0f) * jumpSpeed;
+			rb2d.AddForce(j_movement);
+			grounded = false;
+			return;
+		}
+
+
 		// Process movement
 		// flip
 		if (i_movement.x != 0)

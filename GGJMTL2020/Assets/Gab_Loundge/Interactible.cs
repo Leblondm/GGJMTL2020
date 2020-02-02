@@ -50,6 +50,7 @@ public class Interactible : MonoBehaviour
 		bInteractible = true;
 		gameObject.GetComponent<SpriteRenderer>().sprite = breakVisual;
 		(needResourceFeedback.GetComponent<SpriteRenderer>()).sprite = neededVisual;
+		masterAudioManager.Play(breakClipName);
 		currentTween = needResourceFeedback.transform.DOLocalMoveY(1.5f, 2.0f, false).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
 		Debug.Log("Is it working ???");
 	}
@@ -59,6 +60,7 @@ public class Interactible : MonoBehaviour
 		currentInteractor = null;
 		progressExecution = 0.0f;
 		bDuringInteract = false;
+		masterAudioManager.Stop(repairClipName);
 	}
 
 	public void StartExecute(PlayerController Instigator)
@@ -108,6 +110,7 @@ public class Interactible : MonoBehaviour
 				gameObject.GetComponent<SpriteRenderer>().sprite = normalVisual;
 				(needResourceFeedback.GetComponent<SpriteRenderer>()).sprite = null;
 				currentTween.Kill();
+				masterAudioManager.Stop(repairClipName);
 				ExecuteInteract(Instigator);
                 currentInteractor.OnInteract();
 				//(needResourceFeedback.GetComponent<SpriteRenderer>()).sprite = neededVisual;
