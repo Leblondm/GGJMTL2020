@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     public void OnPlay() {
         playing = true;
+        FindObjectOfType<AudioManager>().Play("UIClick");
         StartCoroutine("GameplayLoop");
 
         CameraAnimator.SetTrigger("Game");
